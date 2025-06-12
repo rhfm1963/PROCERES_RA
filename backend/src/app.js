@@ -41,8 +41,17 @@ const startServer = async () => {
       require("./routes/arRoutes")
     );
 
+    // SERVE STATIC FILES IN PRODUCTION
+    if (process.env.NODE_ENV === "production") {
+      app.use(express.static(path.join(__dirname, "../client/build")));
+      
+      app.get("*", (req, res) => {
+        res.sendFile(path.join(__dirname, "../client/build", "index.html"));
+      });
+    }
+
     const PORT = process.env.PORT || 5000;
-    app.listen(PORT, () => {
+    app.listen(PORT, '0.0.0.0', () => {  // Comma added here
       console.log(`🚀 Servidor corriendo en puerto ${PORT}`);
     });
   } catch (err) {
