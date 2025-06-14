@@ -1,13 +1,34 @@
+// routes/arRoutes.js
 const express = require('express');
 const router = express.Router();
-const { checkRole } = require('../middlewares/auth'); // Importa desde el objeto
-const arController = require('../controllers/arController');
+const ARModel = require('../models/ARModel');
+const authenticate = require('../middlewares/auth');
 
-router.post('/models', 
-  checkRole(['admin', 'ar_creator']), // Ahora funciona
-  arController.createARModel
-);
+// Crear modelo (protegido)
+router.post('/', authenticate, async (req, res) => {
+  try {
+    const { name, modelUrl } = req.body;
+    const newModel = new ARModel({ name, modelUrl, createdBy: req.user.id });
+    await newModel.save();
+    res.status(201).json(newModel);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
 
-router.get('/models', arController.getARModels);
+// Listar modelos públicos
+router.get('/', async (req, res) => {
+  const models = await ARModel.find().populate('createdBy', 'email');
+  res.json(models);
+});
 
-module.exports = router;
+// Detalle de modelo
+router.get('/:id', async (req, res) => {
+  try {
+    const model = await ARModel.findById(req.params.id);
+    if (!model) return res.status(404).json({ error: "Modelo no encontrado" });
+    res.json(model);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
