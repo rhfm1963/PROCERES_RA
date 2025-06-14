@@ -89,8 +89,8 @@ const startServer = async () => {
     app.use("/api/proceres", require("./routes/procerRoutes"));
 
     // Rutas de realidad aumentada (protegidas)
-    app.use("/api/ar/models", authMiddleware.authenticate, require("./routes/arModelRoutes"));
-    app.use("/api/ar/scenes", authMiddleware.authenticate, require("./routes/sceneRoutes"));
+    //app.use("/api/ar/models", authMiddleware.authenticate, require("./routes/arModelRoutes"));
+    //app.use("/api/ar/scenes", authMiddleware.authenticate, require("./routes/sceneRoutes"));
 
     // Rutas de usuarios (protegidas y con control de roles)
     app.use("/api/users", 
@@ -99,9 +99,9 @@ const startServer = async () => {
       require("./routes/userRoutes"));
 
     // Rutas de assets (protegidas)
-    app.use("/api/assets", 
-      authMiddleware.authenticate, 
-      require("./routes/assetRoutes"));
+    //app.use("/api/assets", 
+    //  authMiddleware.authenticate, 
+    //  require("./routes/assetRoutes"));
 
     const PORT = process.env.PORT || 5000;
     app.listen(PORT, '0.0.0.0', () => {
