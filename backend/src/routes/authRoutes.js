@@ -8,7 +8,6 @@ const { authenticate } = require('../middlewares/auth');
 router.post('/login', authController.login);
 router.post('/register', authController.register);
 
-const express = require('express');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const User = require('../models/User');
