@@ -26,7 +26,7 @@ module.exports = async () => {
     const token = jwt.sign(
       { userId: admin._id, role: admin.role },
       process.env.JWT_SECRET,
-      { expiresIn: '30d' }
+      { expiresIn: '1d' }
     );
 
     // Guardar token en archivo (solo para desarrollo)
