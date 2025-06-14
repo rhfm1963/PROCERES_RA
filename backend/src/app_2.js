@@ -18,7 +18,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Documentación de la API
+// Ruta raíz con documentación completa de la API
 app.get("/", (req, res) => {
   res.json({
     status: "API funcionando",
@@ -36,8 +36,31 @@ app.get("/", (req, res) => {
         delete: "DELETE /api/proceres/:id (requiere admin)"
       },
       realidad_aumentada: {
-        modelos: "GET /api/ar/models",
-        escenas: "GET /api/ar/scenes"
+        modelos: {
+          list: "GET /api/ar/models",
+          detail: "GET /api/ar/models/:id",
+          create: "POST /api/ar/models (requiere autenticación)",
+          update: "PUT /api/ar/models/:id (requiere autenticación)",
+          delete: "DELETE /api/ar/models/:id (requiere autenticación)"
+        },
+        escenas: {
+          list: "GET /api/ar/scenes",
+          detail: "GET /api/ar/scenes/:id",
+          create: "POST /api/ar/scenes (requiere autenticación)",
+          update: "PUT /api/ar/scenes/:id (requiere autenticación)",
+          delete: "DELETE /api/ar/scenes/:id (requiere autenticación)"
+        }
+      },
+      usuarios: {
+        list: "GET /api/users (requiere admin)",
+        detail: "GET /api/users/:id (requiere admin)",
+        update: "PUT /api/users/:id (requiere admin o propio usuario)",
+        delete: "DELETE /api/users/:id (requiere admin)"
+      },
+      assets: {
+        list: "GET /api/assets",
+        upload: "POST /api/assets (requiere autenticación)",
+        delete: "DELETE /api/assets/:id (requiere autenticación)"
       }
     }
   });
@@ -59,21 +82,31 @@ const startServer = async () => {
       }
     }
 
-    // Rutas API
+    // Rutas de autenticación (públicas)
     app.use("/api/auth", require("./routes/authRoutes"));
-    
+
     // Rutas de próceres (públicas para lectura, protegidas para escritura)
     app.use("/api/proceres", require("./routes/procerRoutes"));
-    
+
     // Rutas de realidad aumentada (protegidas)
-    app.use("/api/ar", 
+    //app.use("/api/ar/models", authMiddleware.authenticate, require("./routes/arModelRoutes"));
+    //app.use("/api/ar/scenes", authMiddleware.authenticate, require("./routes/sceneRoutes"));
+
+    // Rutas de usuarios (protegidas y con control de roles)
+    app.use("/api/users", 
       authMiddleware.authenticate, 
-      require("./routes/arRoutes"));
+      authMiddleware.checkRole(['admin']), 
+      require("./routes/userRoutes"));
+
+    // Rutas de assets (protegidas)
+    //app.use("/api/assets", 
+    //  authMiddleware.authenticate, 
+    //  require("./routes/assetRoutes"));
 
     const PORT = process.env.PORT || 5000;
     app.listen(PORT, '0.0.0.0', () => {
       console.log(`🚀 Servidor corriendo en puerto ${PORT}`);
-      console.log(`📚 Documentación API: http://localhost:${PORT}`);
+      console.log(`📚 Documentación API disponible en http://localhost:${PORT}`);
     });
   } catch (err) {
     console.error("❌ Error crítico al iniciar:", err);
