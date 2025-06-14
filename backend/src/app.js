@@ -9,7 +9,6 @@ require("./models/User");
 require("./models/Asset");
 require("./models/Scene");
 require("./models/Procer");
-const path = require('path');
 require(path.join(__dirname, "./models/ARModel"));
 
 
