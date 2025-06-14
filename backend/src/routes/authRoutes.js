@@ -1,4 +1,13 @@
 // routes/authRoutes.js
+// authRoutes.js
+const express = require('express');
+const authController = require('../controllers/authController'); // Importación correcta
+const { authenticate } = require('../middlewares/auth');
+
+// Ejemplo de ruta que usa el controlador
+router.post('/login', authController.login);
+router.post('/register', authController.register);
+
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
