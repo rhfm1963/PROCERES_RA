@@ -3,34 +3,45 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 const ARModel = require(path.join(__dirname, '../models/ARModel'));
-// const ARModel = require('../models/ARModel');
-const authenticate = require('../middlewares/auth');
+const { authenticate } = require('../middlewares/auth');
+
+// Middleware para manejar errores de async/await
+const asyncHandler = fn => (req, res, next) => {
+  Promise.resolve(fn(req, res, next)).catch(next);
+};
 
 // Crear modelo (protegido)
-router.post('/', authenticate, async (req, res) => {
-  try {
+router.post('/', 
+  authenticate, 
+  asyncHandler(async (req, res) => {
     const { name, modelUrl } = req.body;
-    const newModel = new ARModel({ name, modelUrl, createdBy: req.user.id });
+    const newModel = new ARModel({ 
+      name, 
+      modelUrl, 
+      createdBy: req.user.id 
+    });
     await newModel.save();
     res.status(201).json(newModel);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-});
+  })
+);
 
 // Listar modelos públicos
-router.get('/', async (req, res) => {
-  const models = await ARModel.find().populate('createdBy', 'email');
-  res.json(models);
-});
+router.get('/', 
+  asyncHandler(async (req, res) => {
+    const models = await ARModel.find().populate('createdBy', 'email');
+    res.json(models);
+  })
+);
 
 // Detalle de modelo
-router.get('/:id', async (req, res) => {
-  try {
+router.get('/:id', 
+  asyncHandler(async (req, res) => {
     const model = await ARModel.findById(req.params.id);
-    if (!model) return res.status(404).json({ error: "Modelo no encontrado" });
+    if (!model) {
+      return res.status(404).json({ error: "Modelo no encontrado" });
+    }
     res.json(model);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
+  })
+);
+
+module.exports = router;
