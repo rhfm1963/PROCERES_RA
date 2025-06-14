@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const path = require('path');
-const ARModel = require(path.join(__dirname, '../../models/ARModel'));
+const ARModel = require(path.join(__dirname, '../models/ARModel'));
 // const ARModel = require('../models/ARModel');
 const authenticate = require('../middlewares/auth');
 
