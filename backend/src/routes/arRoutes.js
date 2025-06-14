@@ -1,7 +1,7 @@
 // routes/arRoutes.js
 const express = require('express');
 const router = express.Router();
-const ARModel = require('../models/arModel');
+const ARModel = require('../models/ARModel');
 const authenticate = require('../middlewares/auth');
 
 // Crear modelo (protegido)
