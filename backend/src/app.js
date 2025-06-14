@@ -9,7 +9,8 @@ require("./models/User");
 require("./models/Asset");
 require("./models/Scene");
 require("./models/Procer");
-req
+require("./models/ARModel");
+
 
 const app = express();
 
