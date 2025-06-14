@@ -1,0 +1,100 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2023-11-10T05:00:00.000Z",
+  "__export_source": "insomnia.desktop.app:v2023.5.8",
+  "resources": [
+    {
+      "_id": "req_auth_login",
+      "parentId": "fld_auth",
+      "name": "Login",
+      "method": "POST",
+      "url": "{{base_url}}/api/auth/login",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"admin@yourapp.com\",\n  \"password\": \"tu_password_secreto\"\n}"
+      },
+      "authentication": {}
+    },
+    {
+      "_id": "req_auth_register",
+      "parentId": "fld_auth",
+      "name": "Register",
+      "method": "POST",
+      "url": "{{base_url}}/api/auth/register",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"Nuevo Usuario\",\n  \"email\": \"nuevo@usuario.com\",\n  \"password\": \"password123\",\n  \"role\": \"user\"\n}"
+      }
+    },
+    {
+      "_id": "req_auth_profile",
+      "parentId": "fld_auth",
+      "name": "Get Profile",
+      "method": "GET",
+      "url": "{{base_url}}/api/auth/me",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{token}}"
+        }
+      ]
+    },
+    {
+      "_id": "req_proceres_list",
+      "parentId": "fld_proceres",
+      "name": "List Próceres",
+      "method": "GET",
+      "url": "{{base_url}}/api/proceres"
+    },
+    {
+      "_id": "req_proceres_create",
+      "parentId": "fld_proceres",
+      "name": "Create Prócer",
+      "method": "POST",
+      "url": "{{base_url}}/api/proceres",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{admin_token}}"
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nombre\": \"Simón Bolívar\",\n  \"apodo\": \"El Libertador\",\n  \"fechaNacimiento\": \"1783-07-24\",\n  \"lugarNacimiento\": \"Caracas, Venezuela\",\n  \"fechaFallecimiento\": \"1830-12-17\",\n  \"lugarFallecimiento\": \"Santa Marta, Colombia\",\n  \"descripcion\": \"Líder fundamental en la independencia de varios países sudamericanos\",\n  \"logros\": [\n    \"Independencia de Venezuela\",\n    \"Independencia de Colombia\",\n    \"Independencia de Ecuador\",\n    \"Independencia de Perú\",\n    \"Independencia de Bolivia\"\n  ],\n  \"imagenUrl\": \"https://ejemplo.com/bolivar.jpg\"\n}"
+      }
+    },
+    {
+      "_id": "fld_auth",
+      "name": "Authentication",
+      "parentId": "wrk_01"
+    },
+    {
+      "_id": "fld_proceres",
+      "name": "Próceres",
+      "parentId": "wrk_01"
+    },
+    {
+      "_id": "wrk_01",
+      "name": "PROCERES API",
+      "description": "Colección para probar la API de PROCERES",
+      "scope": "collection"
+    },
+    {
+      "_id": "env_base",
+      "name": "Base Environment",
+      "data": {
+        "base_url": "http://localhost:5000",
+        "token": "",
+        "admin_token": ""
+      },
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": -1
+    }
+  ]
+}
