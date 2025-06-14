@@ -10,4 +10,6 @@ router.post('/login', async (req, res) => {
     const token = await user.generateAuthToken(); // 👈 Usa el método del modelo
     res.json({ token, score: user.score }); // 👈 Devuelve puntuación
   } catch (error) {
-    res.status(500
+        res.status(500).json({ error: 'Error al iniciar sesión' });
+      }
+    });

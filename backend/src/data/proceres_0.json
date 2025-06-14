@@ -81,60 +81,6 @@
         "Unificador de Venezuela en sus primeros años como nación"
       ],
       "frase_celebre": "¡Vuelvan caras! (Orden en la Batalla de Las Queseras del Medio)"
-    },
-    {
-      "id": 4,
-      "nombre": "Antonio José de Sucre",
-      "nombre_completo": "Antonio José de Sucre y Alcalá",
-      "apodo": "Gran Mariscal de Ayacucho",
-      "fecha_nacimiento": "1795-02-03",
-      "fecha_fallecimiento": "1830-06-04",
-      "lugar_nacimiento": "Cumaná, Capitanía General de Venezuela",
-      "lugar_fallecimiento": "Montañas de Berruecos, Colombia",
-      "cargos": [
-        "Presidente de Bolivia",
-        "Gran Mariscal de Ayacucho",
-        "Comandante del Ejército del Sur"
-      ],
-      "batallas_importantes": [
-        "Batalla de Ayacucho",
-        "Batalla de Pichincha",
-        "Batalla de Tarqui"
-      ],
-      "logros": [
-        "Vencedor en la Batalla de Ayacucho (independencia del Perú)",
-        "Redactor de la Capitulación de Ayacucho",
-        "Presidente de Bolivia",
-        "Considerado el militar más completo de la independencia"
-      ],
-      "frase_celebre": "Quiero más una libertad peligrosa que una servidumbre tranquila."
-    },
-    {
-      "id": 5,
-      "nombre": "Rafael Urdaneta",
-      "nombre_completo": "Rafael José Urdaneta Farías",
-      "apodo": "El Brillante",
-      "fecha_nacimiento": "1788-10-24",
-      "fecha_fallecimiento": "1845-08-23",
-      "lugar_nacimiento": "Maracaibo, Capitanía General de Venezuela",
-      "lugar_fallecimiento": "París, Francia",
-      "cargos": [
-        "Presidente de la Gran Colombia",
-        "Secretario de Guerra y Marina",
-        "Gobernador de la Provincia de Guayana"
-      ],
-      "batallas_importantes": [
-        "Batalla de Boyacá",
-        "Campaña del Sur",
-        "Batalla de Barbula"
-      ],
-      "logros": [
-        "Único presidente zuliano de la Gran Colombia",
-        "Fiel seguidor de Bolívar hasta el final",
-        "Organizador del ejército libertador",
-        "Participante en más de 20 batallas independentistas"
-      ],
-      "frase_celebre": "La disciplina es el alma de los ejércitos y la base del buen éxito en la guerra."
     }
   ]
 }
