@@ -16,7 +16,7 @@ class InitialSetup {
     };
     
     this.proceresPath = path.join(__dirname, '..', 'data', 'proceres.json');
-    this.batchSize = 5;
+    this.batchSize = 10;
   }
   
   async initialize() {
