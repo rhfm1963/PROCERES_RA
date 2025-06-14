@@ -1,17 +1,20 @@
 // routes/authRoutes.js
-// authRoutes.js
 const express = require('express');
-const authController = require('../controllers/authController'); // Importación correcta
-const { authenticate } = require('../middlewares/auth');
-
-// Ejemplo de ruta que usa el controlador
-router.post('/login', authController.login);
-router.post('/register', authController.register);
-
+const router = express.Router(); // Router debe ser lo primero después de imports
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const User = require('../models/User');
-const router = express.Router();
+const authController = require('../controllers/authController');
+const { authenticate } = require('../middlewares/auth');
+
+// Implementación directa O controladores importados (elige uno)
+
+// Opción 1: Usando controladores importados (recomendado)
+router.post('/register', authController.register);
+router.post('/login', authController.login);
+router.post('/refresh-token', authController.refreshToken);
+router.post('/logout', authController.logout);
+
 
 // Registro
 router.post('/register', async (req, res) => {
